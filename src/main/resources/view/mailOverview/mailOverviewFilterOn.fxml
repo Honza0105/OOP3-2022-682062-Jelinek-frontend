@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="493.0" prefWidth="1236.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.mailOverview.MailOverviewFilterOnController">
+   <children>
+      <SplitPane dividerPositions="0.2354132901134522" layoutX="166.0" layoutY="167.0" prefHeight="493.0" prefWidth="1236.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TableView layoutX="70.0" layoutY="146.0" prefHeight="491.0" prefWidth="285.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn prefWidth="139.0" text="Sender" />
+                      <TableColumn prefWidth="146.0" text="Subject" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <GridPane layoutX="344.0" layoutY="201.0" prefHeight="491.0" prefWidth="940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Sender" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Label>
+                        <Label text="Subject" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></Label>
+                        <Label text="Body" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></Label>
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Label>
+                        <Label text="Time" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Label>
+                        <Label text="Label" GridPane.columnIndex="3">
+                           <font>
+                              <Font size="28.0" />
+                           </font></Label>
+                        <ImageView fx:id="imageView" fitHeight="47.0" fitWidth="68.0" onMouseClicked="#showEveryMessage" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../filter_on.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <TextArea prefHeight="200.0" prefWidth="534.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="3" />
+                        <Label text="Safe?" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label text="No" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="28.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <ImageView fitHeight="47.0" fitWidth="68.0" onMouseClicked="#showNewMessageWindow" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                           <image>
+                              <Image url="@../../write_message.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -4,6 +4,10 @@ module com.example.oop32022682062jelinekfrontend {
     requires domain;
 
 
-    opens com.example.oop32022682062jelinekfrontend to javafx.fxml;
-    exports com.example.oop32022682062jelinekfrontend;
+    opens view to javafx.fxml;
+    exports view;
+    exports app;
+
+    opens view.mailOverview to javafx.fxml;
+    exports view.mailOverview to javafx.fxml;
 }
