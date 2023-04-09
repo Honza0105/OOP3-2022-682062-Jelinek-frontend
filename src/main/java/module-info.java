@@ -10,4 +10,7 @@ module com.example.oop32022682062jelinekfrontend {
 
     opens view.mailOverview to javafx.fxml;
     exports view.mailOverview to javafx.fxml;
+
+    opens view.login to javafx.fxml;
+    exports view.login to javafx.fxml;
 }

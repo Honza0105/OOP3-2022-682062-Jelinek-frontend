@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import view.RootLayoutController;
+import view.login.LoginController;
 import view.mailOverview.MailOverviewFilterOffController;
 import view.mailOverview.MailOverviewFilterOnController;
 
@@ -34,7 +35,7 @@ public class Main extends Application {
 
         primaryStage.show();
 
-        showMailOverviewFilterOff();
+        showLogIn();
 // to be added
 //        showMainWindow();
 
@@ -58,7 +59,7 @@ public class Main extends Application {
     public void showMailOverviewFilterOff() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Main.class.getResource("/view/mailOverview/mailOverviewFilterOff.fxml"));
+            fxmlLoader.setLocation(Main.class.getResource("/view/mailOverview/MailOverviewFilterOff.fxml"));
             System.out.println(fxmlLoader.getLocation());
             AnchorPane assetOverview = fxmlLoader.load();
 
@@ -74,12 +75,28 @@ public class Main extends Application {
     public void showMailOverviewFilterOn() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Main.class.getResource("/view/mailOverview/mailOverviewFilterOn.fxml"));
+            fxmlLoader.setLocation(Main.class.getResource("/view/mailOverview/MailOverviewFilterOn.fxml"));
             System.out.println(fxmlLoader.getLocation());
             AnchorPane assetOverview = fxmlLoader.load();
 
             rootLayout.setCenter(assetOverview);
             MailOverviewFilterOnController controller = fxmlLoader.getController();
+            controller.setMain(this);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void showLogIn(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(Main.class.getResource("/view/login/Login.fxml"));
+            System.out.println(fxmlLoader.getLocation());
+            AnchorPane assetOverview = fxmlLoader.load();
+
+            rootLayout.setCenter(assetOverview);
+            LoginController controller = fxmlLoader.getController();
             controller.setMain(this);
         }
         catch (IOException e){
