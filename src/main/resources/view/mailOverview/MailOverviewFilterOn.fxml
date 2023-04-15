@@ -66,11 +66,11 @@
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin></Label>
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="subjectLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="28.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Label fx:id="timeLabel" text="Label" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <font>
                               <Font size="28.0" />
                            </font></Label>
@@ -78,7 +78,7 @@
                            <font>
                               <Font size="28.0" />
                            </font></Label>
-                        <Label text="Label" GridPane.columnIndex="3">
+                        <Label fx:id="senderLabel" text="Label" GridPane.columnIndex="3">
                            <font>
                               <Font size="28.0" />
                            </font></Label>
@@ -99,7 +99,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </Label>
-                        <Label text="No" GridPane.rowIndex="4">
+                        <Label fx:id="crackStatus" text="No" GridPane.rowIndex="4">
                            <font>
                               <Font size="28.0" />
                            </font>

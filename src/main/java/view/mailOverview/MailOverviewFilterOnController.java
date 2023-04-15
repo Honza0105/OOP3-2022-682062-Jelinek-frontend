@@ -2,6 +2,7 @@ package view.mailOverview;
 
 import app.Main;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -10,6 +11,18 @@ public class MailOverviewFilterOnController {
 
     @FXML
     private ImageView imageView;
+
+    @FXML
+    private Label subjectLabel;
+
+    @FXML
+    private Label senderLabel;
+
+    @FXML
+    private Label timeLabel;
+
+    @FXML
+    private Label crackStatus;
 
 
 

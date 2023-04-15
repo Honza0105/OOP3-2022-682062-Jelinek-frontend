@@ -25,6 +25,12 @@
             <artifactId>javafx-fxml</artifactId>
             <version>18.0.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>19</version>
+        </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -43,6 +49,11 @@
             <artifactId>OOP3-2022-682062-Jelinek-backend</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.javastack</groupId>
+            <artifactId>stringproperties</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 
