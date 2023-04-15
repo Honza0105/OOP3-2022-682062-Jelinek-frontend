@@ -13,6 +13,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 public class MailOverviewFilterOffController {
     private Main main;
 
@@ -65,7 +68,7 @@ public class MailOverviewFilterOffController {
         if (message != null) {
             subjectLabel.setText(message.getSubject());
             senderLabel.setText(message.getFrom().getEmailAddress());
-            timeLabel.setText(message.getDateTime().toString());
+            timeLabel.setText(message.getDateTime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
             crackStatus.setText(message.getCracked());
         }
         else {
