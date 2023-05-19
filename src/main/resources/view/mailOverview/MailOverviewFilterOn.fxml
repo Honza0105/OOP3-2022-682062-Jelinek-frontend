@@ -90,7 +90,10 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <TextArea prefHeight="200.0" prefWidth="534.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="3" />
+                        <TextArea prefHeight="200.0" prefWidth="534.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="3">
+                           <font>
+                              <Font size="28.0" />
+                           </font></TextArea>
                         <Label text="Safe?" GridPane.rowIndex="3">
                            <font>
                               <Font size="28.0" />

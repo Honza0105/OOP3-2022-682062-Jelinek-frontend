@@ -6,7 +6,7 @@ module com.example.oop32022682062jelinekfrontend {
 
     opens view to javafx.fxml;
     exports view;
-    exports app;
+    exports app_front_end;
 
     opens view.mailOverview to javafx.fxml;
     exports view.mailOverview to javafx.fxml;

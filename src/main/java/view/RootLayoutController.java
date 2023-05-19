@@ -1,8 +1,7 @@
 package view;
 
-import app.Main;
+import app_front_end.Main;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;

@@ -1,10 +1,8 @@
 package view.mailOverview;
 
-import app.Main;
-import domain.Contact;
+import app_front_end.Main;
 import domain.Message;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -55,27 +53,35 @@ public class MailOverviewFilterOffController {
     }
 
     @FXML
-    public void initialize(){
+    public void initialize() throws Exception {
         senderColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFrom().getEmailAddress()));
         subjectColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSubject()));
 
         showMessageDetails(null);
 
-        messageTableView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> showMessageDetails(newValue));
+        messageTableView.getSelectionModel().selectedItemProperty().addListener((observableValue, oldValue, newValue) -> {
+            try {
+                showMessageDetails(newValue);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
-    private void showMessageDetails(Message message) {
+    private void showMessageDetails(Message message) throws Exception {
         if (message != null) {
             subjectLabel.setText(message.getSubject());
             senderLabel.setText(message.getFrom().getEmailAddress());
             timeLabel.setText(message.getDateTime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
             crackStatus.setText(message.getCracked());
+            bodyTextArea.setText(message.getContent());
         }
         else {
             subjectLabel.setText("");
             senderLabel.setText("");
             timeLabel.setText("");
             crackStatus.setText("");
+            bodyTextArea.setText("");
         }
     }
 

@@ -1,6 +1,6 @@
 package view.mailOverview;
 
-import app.Main;
+import app_front_end.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;

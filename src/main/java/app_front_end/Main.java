@@ -1,10 +1,12 @@
-package app;
+package app_front_end;
 
 import cipher.CaesarCipher;
+import conf.Settings;
 import custom.CustomRSA;
 import domain.Message;
 import domain.User;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -18,15 +20,18 @@ import view.mailOverview.MailOverviewFilterOffController;
 import view.mailOverview.MailOverviewFilterOnController;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main extends Application {
 
     private ObservableList<Message> messageObservableList = FXCollections.observableArrayList();
 
     private ObservableList<Message> crackedMessageObservableList = FXCollections.observableArrayList();
+
+    private Main main;
 
     private static Stage primaryStage;
     private BorderPane rootLayout;
@@ -45,6 +50,10 @@ public class Main extends Application {
         Message message = new Message(them,us, LocalDateTime.now(),"greetings", rsaEncryptedMessage.getEncryptedMessage());
         messageObservableList.add(message);
 
+        String notEncryptedString = "Hi,\nHow are you doing? I am doing great\nI would like to ask you something...\nPlease do not hesitate to contact me soon!";
+        Message message1 = new Message(them,us, LocalDateTime.now(),"not encrypted accidently", notEncryptedString);
+        messageObservableList.add(message1);
+
 
     }
 
@@ -54,29 +63,64 @@ public class Main extends Application {
         primaryStage.setTitle("Outlook wannabe");
         dummyAddition();
 
-        initRootLayout();
+        // Create a thread pool with two threads
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        // Thread 1: Handle the GUI and frontend requests
+        executor.execute(() -> {
+            try {
+                FrontEnd frontEnd = new FrontEnd(main, Settings.FRONT_LISTENER_PORT, Settings.TCP_SERVER_NAME, Settings.BACK_LISTENER_PORT);
+                frontEnd.startListening();
+//                System.out.println("I do request");
+//                frontEnd.requestPull();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
 
-        primaryStage.show();
+        // Thread 2: Handle the GUI
+        executor.execute(() -> {
+            try {
+                initRootLayout();
+                Platform.runLater(() -> primaryStage.show());
+                Platform.runLater(() -> showMailOverviewFilterOff());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
-//        showLogIn();
-        showMailOverviewFilterOff();
+        // Thread 3: Handle the GUI and frontend requests
+        executor.execute(() -> {
+            try {
+                FrontEnd request = new FrontEnd(main, Settings.FRONT_LISTENER_PORT, Settings.TCP_SERVER_NAME, Settings.BACK_LISTENER_PORT);
+                System.out.println("I do request");
+                request.requestPull();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+        executor.shutdown();
+    }
+    //        showLogIn();
 // to be added
 //        showMainWindow();
-
-    }
-
     private void initRootLayout() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("/view/RootLayout.fxml"));
             rootLayout = fxmlLoader.load();
-            Scene scene = new Scene(rootLayout, 1250, 600);
-            primaryStage.setScene(scene);
 
-            RootLayoutController controller = fxmlLoader.getController();
-//            controller.setMain(this);
-        } catch(Exception e) {
+            Platform.runLater(() -> {
+                Scene scene = new Scene(rootLayout, 1250, 600);
+                primaryStage.setScene(scene);
+
+                RootLayoutController controller = fxmlLoader.getController();
+                // controller.setMain(this);
+            });
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -131,6 +175,10 @@ public class Main extends Application {
 
     public ObservableList<Message> getMessageObservableList() {
         return messageObservableList;
+    }
+
+    public boolean addToMessageObservableList(Message message){
+        return messageObservableList.add(message);
     }
 
     public static void main(String[] args) {
