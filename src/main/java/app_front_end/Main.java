@@ -31,7 +31,6 @@ public class Main extends Application {
 
     private ObservableList<Message> crackedMessageObservableList = FXCollections.observableArrayList();
 
-    private Main main;
 
     private static Stage primaryStage;
     private BorderPane rootLayout;
@@ -69,7 +68,7 @@ public class Main extends Application {
         // Thread 1: Handle the GUI and frontend requests
         executor.execute(() -> {
             try {
-                FrontEnd frontEnd = new FrontEnd(main, Settings.FRONT_LISTENER_PORT, Settings.TCP_SERVER_NAME, Settings.BACK_LISTENER_PORT);
+                FrontEnd frontEnd = new FrontEnd(this, Settings.FRONT_LISTENER_PORT, Settings.TCP_SERVER_NAME, Settings.BACK_LISTENER_PORT);
                 frontEnd.startListening();
 //                System.out.println("I do request");
 //                frontEnd.requestPull();
@@ -90,16 +89,21 @@ public class Main extends Application {
             }
         });
 
-        // Thread 3: Handle the GUI and frontend requests
+        // Thread 3: Repeat the request every 10 seconds
         executor.execute(() -> {
             try {
-                FrontEnd request = new FrontEnd(main, Settings.FRONT_LISTENER_PORT, Settings.TCP_SERVER_NAME, Settings.BACK_LISTENER_PORT);
-                System.out.println("I do request");
-                request.requestPull();
-            } catch (IOException e) {
+                FrontEnd request = new FrontEnd(this, Settings.FRONT_LISTENER_PORT, Settings.TCP_SERVER_NAME, Settings.BACK_LISTENER_PORT);
+
+                while (true) {
+                    System.out.println("I do request");
+                    request.requestPull();
+                    Thread.sleep(10000); // Sleep for 10 seconds
+                }
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         });
+
 
 
         executor.shutdown();

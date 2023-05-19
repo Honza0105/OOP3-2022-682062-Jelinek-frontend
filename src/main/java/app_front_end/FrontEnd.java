@@ -3,6 +3,7 @@ package app_front_end;
 import conf.Settings;
 import domain.Contact;
 import domain.Message;
+import javafx.application.Platform;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class FrontEnd {
         executor = Executors.newCachedThreadPool();
         this.backendAddress = backendAddress;
         this.requestPort = backendPort;
+        this.listeningPort = port;
     }
 
     public void startListening() throws IOException {
@@ -71,31 +73,35 @@ public class FrontEnd {
                     PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)
             ) {
 //                System.out.println(reader.read());
+//                while ((line = reader.readLine()) != null) {
+//                    System.out.println(line);
+//                }
+                // Read From, To, and Subject from the connection
+                String from = reader.readLine();
+                String to = reader.readLine();
+                String subject = reader.readLine();
+                System.out.println("from: "+ from);
+                System.out.println("to: "+to);
+                System.out.println("subject: "+ subject);
+                System.out.println(main);
+
+                // Read the message body as one or more Strings
+                StringBuilder messageBody = new StringBuilder();
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
+                    messageBody.append(line);
                 }
-                // Read From, To, and Subject from the connection
-//                String from = reader.readLine();
-//                String to = reader.readLine();
-//                String subject = reader.readLine();
-//                System.out.println("from: "+ from);
-//                System.out.println("to: "+to);
-//                System.out.println("subject: "+ subject);
-//
-//                // Read the message body as one or more Strings
-//                StringBuilder messageBody = new StringBuilder();
-//                String line;
-//                while ((line = reader.readLine()) != null) {
-//                    messageBody.append(line);
-//                }
 
                 // Create the message and add it to the structure for incoming messages
-//                Message message = new Message(new Contact(from), new Contact(to),LocalDateTime.now(), messageBody.toString(),subject);
-//                main.addToMessageObservableList(message);
-            } catch (IOException e) {
-                e.printStackTrace();
+                Message message = new Message(new Contact(from), new Contact(to),LocalDateTime.now(), messageBody.toString(),subject);
+                Platform.runLater(() -> {
+                    main.addToMessageObservableList(message);
+                });
+
+                } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
+
         }
     }
 }
