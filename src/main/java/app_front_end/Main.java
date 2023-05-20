@@ -97,7 +97,7 @@ public class Main extends Application {
                 while (true) {
                     System.out.println("I do request");
                     request.requestPull();
-                    Thread.sleep(10000); // Sleep for 10 seconds
+                    Thread.sleep(Settings.DEFAULT_POLLING_INTERVAL); // Sleep for 1 minute
                 }
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
