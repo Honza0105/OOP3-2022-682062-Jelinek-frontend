@@ -93,7 +93,7 @@ public class FrontEnd {
                 }
 
                 // Create the message and add it to the structure for incoming messages
-                Message message = new Message(new Contact(from), new Contact(to),LocalDateTime.now(), messageBody.toString(),subject);
+                Message message = new Message(new Contact(from), new Contact(to),LocalDateTime.now(), subject, messageBody.toString());
                 Platform.runLater(() -> {
                     main.addToMessageObservableList(message);
                 });
