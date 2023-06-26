@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.8.2</junit.version>
+        <junit.version>5.9.2</junit.version>
     </properties>
 
     <dependencies>
@@ -23,13 +23,13 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>18.0.1</version>
+            <version>19.0.2.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-base</artifactId>
-            <version>19</version>
+            <version>19.0.2.1</version>
         </dependency>
 
         <dependency>
@@ -77,11 +77,13 @@
             <version>1.9.3</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/cc.redberry/rings -->
         <dependency>
-            <groupId>com.codenameone</groupId>
-            <artifactId>bouncy-castle</artifactId>
-            <version>1.0</version>
+            <groupId>cc.redberry</groupId>
+            <artifactId>rings</artifactId>
+            <version>2.5.8</version>
         </dependency>
+
     </dependencies>
     <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
 

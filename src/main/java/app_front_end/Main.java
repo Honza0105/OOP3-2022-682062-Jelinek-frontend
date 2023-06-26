@@ -27,9 +27,9 @@ import java.util.concurrent.Executors;
 
 public class Main extends Application {
 
-    private ObservableList<Message> messageObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Message> messageObservableList = FXCollections.observableArrayList();
 
-    private ObservableList<Message> crackedMessageObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Message> crackedMessageObservableList = FXCollections.observableArrayList();
 
 
     private static Stage primaryStage;
@@ -70,8 +70,6 @@ public class Main extends Application {
             try {
                 FrontEnd frontEnd = new FrontEnd(this, Settings.FRONT_LISTENER_PORT, Settings.TCP_SERVER_NAME, Settings.BACK_LISTENER_PORT);
                 frontEnd.startListening();
-//                System.out.println("I do request");
-//                frontEnd.requestPull();
             } catch (IOException e) {
                 e.printStackTrace();
             }

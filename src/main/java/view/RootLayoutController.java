@@ -10,10 +10,7 @@ import java.util.Optional;
 
 public class RootLayoutController {
 
-	private Main main;
-
 	public void setMain(Main main) {
-		this.main = main;
 
 	}
 

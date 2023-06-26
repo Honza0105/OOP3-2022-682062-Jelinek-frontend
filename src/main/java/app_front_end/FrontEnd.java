@@ -16,13 +16,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class FrontEnd {
-    private Main main;
-    private ServerSocket listener;
-    private ExecutorService executor;
-    private String backendAddress;
+    private final Main main;
+    private final ExecutorService executor;
+    private final String backendAddress;
 
-    private int listeningPort;
-    private int requestPort;
+    private final int listeningPort;
+    private final int requestPort;
 
     public FrontEnd(Main main, int port, String backendAddress, int backendPort) throws IOException {
         this.main = main;
@@ -33,7 +32,7 @@ public class FrontEnd {
     }
 
     public void startListening() throws IOException {
-        listener = new ServerSocket(listeningPort);
+        ServerSocket listener = new ServerSocket(listeningPort);
         System.out.println("FrontEnd listening on port " + listener.getLocalPort() + "...");
         while (true) {
             try {
@@ -60,7 +59,7 @@ public class FrontEnd {
     }
 
     private class RequestHandler implements Runnable {
-        private Socket clientSocket;
+        private final Socket clientSocket;
 
         public RequestHandler(Socket clientSocket) {
             this.clientSocket = clientSocket;
